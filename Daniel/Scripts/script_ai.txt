@@ -1,0 +1,25 @@
+{
+    //
+    // Check if player exists in the room.
+    //
+        if (instance_exists(obj_helena)) {
+        //
+        // Check distance to player.  Only going to move when close.
+        // Also include a check for solid objects inbetween player and enemy.
+        //
+            if ((distance_to_point(obj_helena.x, obj_helena.y) <= 200) && (!collision_line(x,y,obj_helena.x,obj_helena.y,obj_solid,false,true))) {
+            //
+            // Set the movement friction, direction (towards player), and speed; cap the speed at 3.
+            //
+                friction = 0;
+                motion_add(point_direction(x,y,obj_helena.x,obj_helena.y),1);
+                if (speed >= 3) speed = 3;
+            } else 
+            {
+            //
+            // Set the friction to 1 to stop enemy if player is not close.
+            //
+                friction = 1;
+            }
+        }
+}
